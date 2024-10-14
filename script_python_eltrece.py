@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 
 def extraer_urls(url):
-     """Extrae todos los enlaces (URLs) de una página web.
+    """Extrae todos los enlaces (URLs) de una página web.
 
     Args:
         url (str): La URL de la página web a analizar.
@@ -17,15 +17,13 @@ def extraer_urls(url):
 
     Nota:
         * La función asume que los enlaces están contenidos dentro de etiquetas `<a>`.
-        * El número 8 restado al conteo de enlaces es un ajuste específico para la página web en cuestión y podría necesitar ser modificado. Actualmente exceptúa las 8 urls de YouTube, Tik Tok y descargas de APPS para Android & Apple.
-    """
-    
+        * El número 8 restado al conteo de enlaces es un ajuste específico para la página web en cuestión y podría necesitar ser modificado. Actualmente exceptúa las 8 urls de YouTube, Tik Tok y descargas de APPS para Android & Apple."""
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # Encuentra todos los enlaces (ajusta el selector según la estructura de la página)
     links = soup.find_all('a')
-    print('** Longitud del listado: ', (len(links) - 8), ' **')
+    print('** URLs totales: ', (len(links) - 8), ' **')
     return links
 
 
@@ -67,7 +65,7 @@ def check_urls(url):
                 contador_fail = contador_fail + 1
         contador_ok = contador_ok + 1
 
-    print(f'Contador OK: {contador_ok} \nContador FAIL: {contador_fail}  *****')
+    print(f'\nContador OK: {contador_ok} \nContador FAIL: {contador_fail}  *****')
 
 # URL de la página a analizar
 url = "https://www.eltrecetv.com.ar/"
